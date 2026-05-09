@@ -1,0 +1,7 @@
+| Signal Name | Type | Device | PLC Address |
+|---|---|---|---|
+| diStart1 | Digital Input | Virtual | %M0.0 |
+| diStart2 | Digital Input | Virtual | %M0.1 |
+| doRobotBusy | Digital Output | Virtual | %M0.2 |
+| doAtHome | Digital Output | Virtual | %M0.3 |
+| doJobDone | Digital Output | Virtual | %M0.4 |
