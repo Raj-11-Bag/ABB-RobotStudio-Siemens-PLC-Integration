@@ -1,0 +1,36 @@
+MODULE Module1
+! Digital Inputs from PLC
+  ! DI_StartProgram1 = diStart1
+  ! DI_StartProgram2 = diStart2
+  
+  ! Digital Outputs to PLC  
+  ! DO_RobotBusy = doRobotBusy
+  ! DO_RobotAtHome = doAtHome
+    CONST robtarget pHome := [[475.776855,-4.772733,812.395759],[0.068479107,0.011686352,0.997176034,0.028530643],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget pPickMachine1 := [[555.793265,442.004731,315.399503],[0.038910027,-0.318531366,0.946812101,0.023887731],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget pPickMachine2 := [[600.368372,-379.252098,315.399454],[0.045555024,0.28861531,0.956355891,-0.003058226],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget pPlace := [[597.317418,34.079224,313.049961],[0.00743947,-0.015834149,0.999810842,0.008497947],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+
+  PROC main()
+        MoveJ pHome, v500, z50, tool0;
+        SetDO doAtHome, 1;
+        
+        WHILE TRUE DO
+            WaitDI diStart1, 1;
+            SetDO doAtHome, 0;
+            SetDO doRobotBusy, 1;
+            
+            MoveJ pPickMachine1, v500, z10, tool0;
+            WaitTime 1;
+            MoveJ pPlace, v500, z10, tool0;
+            WaitTime 0.5;
+            MoveJ pHome, v500, z50, tool0;
+            
+            SetDO doRobotBusy, 0;
+            SetDO doAtHome, 1;
+            SetDO doJobDone, 1;
+            WaitTime 0.5;
+            SetDO doJobDone, 0;
+        ENDWHILE
+  ENDPROC
+ENDMODULE
