@@ -11,7 +11,8 @@ robot with a Siemens S7-1214C PLC via virtual PROFINET communication.
 Zero physical hardware required.
 
 ## Demo Video
-[Watch 30-second Demo](demo/Virtual_Commissioning_Demo.mp4)
+
+[![Watch the video](https://img.youtube.com/vi/3jj-lzCeJkg/0.jpg)](https://youtu.be/3jj-lzCeJkg)
 
 ## System Architecture
 TIA Portal (Ladder Logic + HMI)
